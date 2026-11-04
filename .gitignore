@@ -1,0 +1,33 @@
+# Python / Virtual Environment
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Testing / Tooling
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Raw caches / intermediate large files
+outputs/raw_*.npy
+outputs/raw_*.npz
+outputs/large_*.npz
+
+# Keep outputs/ small models, plots, metrics, tables, json, md
+!outputs/model_int8.tflite
+!outputs/model_fp32.keras
+!outputs/gates.json
+!outputs/test_windows.npz
+!outputs/*.json
+!outputs/*.csv
+!outputs/*.md
+!outputs/*.png
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
