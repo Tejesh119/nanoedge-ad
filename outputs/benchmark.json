@@ -1,0 +1,58 @@
+{
+  "model_architecture": "NanoEdge-AD TCN",
+  "int8_file_size_bytes": 32056,
+  "int8_file_size_kb": 31.3,
+  "analytic_macs": 373040,
+  "mac_details": {
+    "sensor_gate": 256,
+    "block_1": {
+      "conv1": 12288,
+      "conv2": 49152,
+      "skip": 4096,
+      "total": 65536
+    },
+    "block_2": {
+      "conv1": 49152,
+      "conv2": 49152,
+      "skip": 0,
+      "total": 98304
+    },
+    "block_3": {
+      "conv1": 73728,
+      "conv2": 110592,
+      "skip": 24576,
+      "total": 208896
+    },
+    "dense_head": 48
+  },
+  "host_benchmark": {
+    "device": "Host Laptop CPU (x86_64)",
+    "runs": 1000,
+    "warmup": 50,
+    "latency_mean_ms": 0.0365,
+    "latency_p50_ms": 0.0354,
+    "latency_p95_ms": 0.0394,
+    "latency_p99_ms": 0.0565,
+    "latency_std_ms": 0.0061,
+    "throughput_inferences_per_sec": 27394.3
+  },
+  "estimated_mcu_benchmarks": {
+    "label": "ESTIMATED MCU LATENCY (Cycle-Accurate Analytic Model, Not Host Measurements)",
+    "cortex_m4": {
+      "name": "ARM Cortex-M4 (STM32L4)",
+      "clock_mhz": 80,
+      "assumed_macs_per_cycle": 0.8,
+      "estimated_cycles": 466300,
+      "estimated_latency_ms": 5.829,
+      "fits_realtime_320ms_stride": true
+    },
+    "esp32": {
+      "name": "Espressif ESP32",
+      "clock_mhz": 240,
+      "assumed_macs_per_cycle": 1.0,
+      "estimated_cycles": 373040,
+      "estimated_latency_ms": 1.554,
+      "fits_realtime_320ms_stride": true
+    }
+  }
+}

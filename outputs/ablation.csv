@@ -1,0 +1,6 @@
+Configuration,F1_Score,Parameters,Flash_Size_KB,Analytic_MACs,Reads_Saved_Pct,Energy_Proxy_mJ
+A: Vanilla TCN (FP32),0.7295,6482,25.32,372784,0.0,2203.21
+B: TCN + INT8,0.7338,6482,30.95,372784,0.0,2172.29
+C: TCN + SensorGate (FP32),0.6307,6486,25.34,373040,0.0,2203.21
+D: TCN + SensorGate + INT8,0.6078,6486,31.3,373040,0.0,2172.29
+E: NanoEdge-AD (Full System),0.5095,6486,31.3,373040,32.02,1496.45
