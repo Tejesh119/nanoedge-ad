@@ -66,3 +66,4 @@ def test_results_tables_exist():
     assert "B2_VanillaCNN (FP32)" in md_text
     assert "B3_DenseAutoencoder" in md_text
     assert "B4_StaticPrunedCNN" in md_text
+

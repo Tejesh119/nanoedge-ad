@@ -5,8 +5,8 @@
 ---
 
 ## 1. Run Metadata
-- **Execution Timestamp**: `2026-11-04T11:38:58.640287`
-- **Git Commit Hash**: `5ba5575`
+- **Execution Timestamp**: `2026-11-04T11:59:34.669078`
+- **Git Commit Hash**: `d098160`
 - **Config Hash (SHA-256)**: `140bef8ccfad`
 - **Evaluation Seeds**: `[42, 101, 777]` (Primary Seed: `42`)
 - **Python Version**: `3.13.5`
@@ -68,7 +68,7 @@
 ## 6. Host & Estimated Microcontroller Latency
 | Hardware Platform | Measurement Type | Clock (MHz) | Throughput / Assumption | Latency (ms) | Real-time Deadline (320 ms) |
 |:---|:---|:---|:---|:---|:---|
-| **Host Laptop CPU (x86_64)** | Measured (N=1000) | Laptop Core | 27,394 inf/s | **0.0365 ms** (p50: 0.0354, p95: 0.0394) | **PASS** |
+| **Host Laptop CPU (x86_64)** | Measured (N=1000) | Laptop Core | 27,394 inf/s | **0.0206 ms** (p50: 0.0202, p95: 0.0215) | **PASS** |
 | **ARM Cortex-M4 (STM32L4)** | Cycle-Accurate Estimate | 80 MHz | 0.8 MAC/cycle | **5.829 ms** | **PASS** (1.8% of budget) |
 | **Espressif ESP32** | Cycle-Accurate Estimate | 240 MHz | 1.0 MAC/cycle | **1.554 ms** | **PASS** (0.5% of budget) |
 

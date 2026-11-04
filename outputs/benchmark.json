@@ -29,12 +29,12 @@
     "device": "Host Laptop CPU (x86_64)",
     "runs": 1000,
     "warmup": 50,
-    "latency_mean_ms": 0.0365,
-    "latency_p50_ms": 0.0354,
-    "latency_p95_ms": 0.0394,
-    "latency_p99_ms": 0.0565,
-    "latency_std_ms": 0.0061,
-    "throughput_inferences_per_sec": 27394.3
+    "latency_mean_ms": 0.0206,
+    "latency_p50_ms": 0.0202,
+    "latency_p95_ms": 0.0215,
+    "latency_p99_ms": 0.0265,
+    "latency_std_ms": 0.0012,
+    "throughput_inferences_per_sec": 48523.9
   },
   "estimated_mcu_benchmarks": {
     "label": "ESTIMATED MCU LATENCY (Cycle-Accurate Analytic Model, Not Host Measurements)",
