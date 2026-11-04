@@ -1,0 +1,2 @@
+total_test_windows,total_test_hours,read_all_sensor_reads,policy_sensor_reads,reads_saved_pct,f1_read_all,f1_policy,f1_delta,precision_policy,recall_policy,false_positives,false_alerts_per_hour,mean_detection_delay_windows,mean_detection_delay_seconds,energy_proxy_read_all_mJ,energy_proxy_policy_mJ,energy_saved_pct,instant_wakeup_count
+1374,0.122,175872,119552,32.02,0.6078,0.5095,0.0984,0.5654,0.4636,93,760.91,0.38,0.123,2172.29,1496.45,31.11,241
