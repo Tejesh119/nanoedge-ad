@@ -1,0 +1,30 @@
+{
+  "model_name": "TCN_SensorGate_INT8",
+  "fp32_params": 6486,
+  "model_size_bytes": 32056,
+  "model_size_kb": 31.3,
+  "fp32_f1": 0.6307,
+  "int8_f1": 0.6078,
+  "f1_delta": 0.0229,
+  "fp32_accuracy": 0.8654,
+  "int8_accuracy": 0.8544,
+  "int8_precision": 0.6225,
+  "int8_recall": 0.5939,
+  "int8_fpr": 0.0845,
+  "int8_roc_auc": 0.7963,
+  "prediction_agreement_pct": 97.31,
+  "quantization_parameters": {
+    "input_scale": 0.09661071002483368,
+    "input_zero_point": 18,
+    "input_dtype": "<class 'numpy.int8'>",
+    "output_scale": 0.00390625,
+    "output_zero_point": -128,
+    "output_dtype": "<class 'numpy.int8'>"
+  },
+  "acceptance_criteria": {
+    "param_count_under_15k": true,
+    "int8_file_under_60kb": true,
+    "f1_within_3_pts": true,
+    "agreement_gte_95_pct": true
+  }
+}
