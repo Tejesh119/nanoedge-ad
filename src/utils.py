@@ -130,3 +130,4 @@ def compute_tcn_macs(input_shape: tuple = (64, 4), blocks: list = None, dense_un
         "total_macs": total_macs,
         "details": layer_macs
     }
+

@@ -40,3 +40,4 @@ all: data train quantize prune simulate benchmark evaluate ablation report test
 
 clean:
 	rm -rf __pycache__ src/__pycache__ tests/__pycache__ .pytest_cache
+

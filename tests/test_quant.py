@@ -45,3 +45,4 @@ def test_int8_quantization_acceptance_criteria():
     assert crit["int8_file_under_60kb"] is True, f"Size: {q_info['model_size_kb']} KB"
     assert crit["f1_within_3_pts"] is True, f"F1 Delta: {q_info['f1_delta']}"
     assert crit["agreement_gte_95_pct"] is True, f"Agreement: {q_info['prediction_agreement_pct']}%"
+

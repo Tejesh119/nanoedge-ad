@@ -84,3 +84,4 @@ def test_windowing_no_train_test_overlap_and_zero_leakage():
         unique = set(types_split)
         for atype in ["spike", "drift", "stuck_at", "noise_burst", "dropout"]:
             assert atype in unique, f"Split {split_name} must contain anomaly type {atype}"
+
