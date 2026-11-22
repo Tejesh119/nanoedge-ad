@@ -1,0 +1,19 @@
+{
+  "seed": 101,
+  "fp32_f1": 0.7368421052631579,
+  "int8_f1": 0.7268623024830699,
+  "f1_drop": 0.00997980278008792,
+  "fp32_accuracy": 0.9163027656477438,
+  "int8_accuracy": 0.9119359534206696,
+  "accuracy_drop": 0.004366812227074246,
+  "agreement_pct": 99.12663755458514,
+  "flatbuffer_size_kb": 31.3,
+  "quant_params": {
+    "input_scale": 0.08273760974407196,
+    "input_zero_point": 48,
+    "input_dtype": "<class 'numpy.int8'>",
+    "output_scale": 0.00390625,
+    "output_zero_point": -128,
+    "output_dtype": "<class 'numpy.int8'>"
+  }
+}

@@ -1,0 +1,11 @@
+Metric,Mean,Std,Value
+pct_reads_saved,34.4723,3.4157,34.4723 ± 3.4157
+streaming_f1,0.5159,0.0583,0.5159 ± 0.0583
+streaming_precision,0.7388,0.1355,0.7388 ± 0.1355
+streaming_recall,0.4004,0.0389,0.4004 ± 0.0389
+streaming_fpr,0.0379,0.0304,0.0379 ± 0.0304
+false_alerts_per_hour,343.8865,276.1477,343.8865 ± 276.1477
+wake_up_count,215.2,67.6735,215.2000 ± 67.6735
+mean_detection_delay_sec,0.05,0.0012,0.0500 ± 0.0012
+mean_detection_delay_windows,0.1563,0.0037,0.1563 ± 0.0037
+pct_energy_saved,33.4912,3.3185,33.4912 ± 3.3185

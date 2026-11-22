@@ -14,6 +14,9 @@ TARGETS = {
     "ablation": [sys.executable, "-m", "src.ablation"],
     "report": [sys.executable, "-m", "src.report"],
     "test": [sys.executable, "-m", "pytest", "tests/", "-v"],
+    "multiseed": [sys.executable, "-m", "src.multiseed"],
+    "diagnostics": [sys.executable, "-m", "src.diagnostics"],
+    "aggregate": [sys.executable, "-m", "src.aggregate"],
 }
 
 ALL_SEQUENCE = ["data", "train", "quantize", "prune", "simulate", "benchmark", "evaluate", "ablation", "report", "test"]

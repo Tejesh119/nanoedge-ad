@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Offline Pruning Comparison: Learnable Gate Ranking vs. 25-Draw Random Subsets (5 Seeds)}
+\label{tab:pruning_sweep}
+\small
+\begin{tabular}{cccccc}
+\toprule
+\textbf{Sensors Pruned} & \textbf{Reads Saved} & \textbf{Gate-Ranked F1} & \textbf{Random F1 Mean} & \textbf{Gate Advantage} & \textbf{Advantage in $\sigma_{\text{rand}}$} \\
+\midrule
+0 & 0\% & 0.6935 $\pm$ 0.0221 & 0.6935 $\pm$ 0.0221 & +0.0000 $\pm$ 0.0000 & +0.00$\sigma$ \\
+1 & 25\% & 0.6239 $\pm$ 0.0352 & 0.5562 $\pm$ 0.0202 & +0.0677 $\pm$ 0.0385 & +1.07$\sigma$ \\
+2 & 50\% & 0.4418 $\pm$ 0.0981 & 0.4256 $\pm$ 0.0157 & +0.0162 $\pm$ 0.1017 & +0.13$\sigma$ \\
+3 & 75\% & 0.2302 $\pm$ 0.1067 & 0.2477 $\pm$ 0.0332 & -0.0175 $\pm$ 0.0880 & -0.36$\sigma$ \\
+\bottomrule
+\end{tabular}
+\end{table}

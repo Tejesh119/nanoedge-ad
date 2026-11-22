@@ -6,7 +6,20 @@ seeds:
   - 42
   - 101
   - 777
+  - 1234
+  - 2024
 primary_seed: 42
+
+diagnostics:
+  pooling_variants: ["avg", "max", "concat"]
+  masking_probs: [0.0, 0.10, 0.25]
+  gate_l1_values: [0.0, 0.0001, 0.001, 0.01]
+  gate_initializers: [1.0, 0.0]
+  receptive_field_expansions:
+    - name: "wider_tcn"
+      filters: [32, 32, 48]
+    - name: "full_receptive_field"
+      dilations: [1, 2, 4, 8, 16]
 
 data:
   channels:

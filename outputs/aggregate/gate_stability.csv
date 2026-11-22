@@ -1,0 +1,6 @@
+seed,gate_temperature,gate_vibration_x,gate_vibration_y,gate_pressure,prune_order
+101.0,0.9437,0.9479,0.9511,0.9555,temperature < vibration_x < vibration_y < pressure
+1234.0,0.9592,0.9566,0.9556,0.9618,vibration_y < vibration_x < temperature < pressure
+2024.0,0.9659,0.9566,0.9676,0.9424,pressure < vibration_x < temperature < vibration_y
+42.0,0.971,0.9655,0.9679,0.9571,pressure < vibration_x < vibration_y < temperature
+777.0,0.9757,0.9734,0.9723,0.9696,pressure < vibration_y < vibration_x < temperature

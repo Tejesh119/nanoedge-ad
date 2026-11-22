@@ -1,0 +1,18 @@
+{
+  "seed": 101,
+  "total_test_windows": 1374,
+  "baseline_reads": 175872,
+  "actual_reads": 111520,
+  "pct_reads_saved": 36.59024745269287,
+  "streaming_f1": 0.4340425531914894,
+  "streaming_precision": 0.5,
+  "streaming_recall": 0.38345864661654133,
+  "streaming_fpr": 0.09205776173285199,
+  "false_alerts_per_hour": 835.1528384279476,
+  "wake_up_count": 202,
+  "mean_detection_delay_sec": 0.05019607843137255,
+  "mean_detection_delay_windows": 0.1568627450980392,
+  "modelled_energy_mj": 1400.07,
+  "baseline_energy_mj": 2172.294,
+  "pct_energy_saved": 35.548779308878075
+}

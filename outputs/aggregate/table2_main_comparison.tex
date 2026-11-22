@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Main Anomaly Detection Performance Comparison across 5 Evaluation Seeds (Mean $\pm$ Sample Std)}
+\label{tab:main_comparison}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model Architecture} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} & \textbf{FPR} & \textbf{ROC-AUC} \\
+\midrule
+B1\_DecisionTree & 0.9501 $\pm$ 0.0022 & 0.9129 $\pm$ 0.0080 & 0.8198 $\pm$ 0.0158 & 0.8637 $\pm$ 0.0077 & 0.0188 $\pm$ 0.0022 & 0.8691 $\pm$ 0.0135 \\
+B2\_VanillaCNN (FP32) & 0.9298 $\pm$ 0.0088 & 0.8944 $\pm$ 0.0355 & 0.7227 $\pm$ 0.0313 & 0.7990 $\pm$ 0.0264 & 0.0206 $\pm$ 0.0075 & 0.8964 $\pm$ 0.0211 \\
+B2\_VanillaCNN (INT8) & 0.9221 $\pm$ 0.0087 & 0.8373 $\pm$ 0.0292 & 0.7421 $\pm$ 0.0324 & 0.7864 $\pm$ 0.0225 & 0.0348 $\pm$ 0.0086 & 0.8966 $\pm$ 0.0220 \\
+B3\_DenseAutoencoder & 0.9389 $\pm$ 0.0041 & 0.8792 $\pm$ 0.0316 & 0.7945 $\pm$ 0.0358 & 0.8337 $\pm$ 0.0124 & 0.0265 $\pm$ 0.0083 & 0.9247 $\pm$ 0.0090 \\
+B4\_StaticPrunedCNN & 0.9112 $\pm$ 0.0248 & 0.8543 $\pm$ 0.0744 & 0.6534 $\pm$ 0.0839 & 0.7390 $\pm$ 0.0732 & 0.0269 $\pm$ 0.0141 & 0.8821 $\pm$ 0.0245 \\
+B4\_StaticPrunedCNN (INT8) & 0.9068 $\pm$ 0.0175 & 0.8225 $\pm$ 0.0248 & 0.6604 $\pm$ 0.0888 & 0.7303 $\pm$ 0.0614 & 0.0339 $\pm$ 0.0055 & 0.8796 $\pm$ 0.0279 \\
+TCN\_SensorGate (FP32) & 0.9054 $\pm$ 0.0070 & 0.8947 $\pm$ 0.0439 & 0.5794 $\pm$ 0.0179 & 0.7029 $\pm$ 0.0202 & 0.0166 $\pm$ 0.0074 & 0.8109 $\pm$ 0.0214 \\
+NanoEdge-AD TCN (INT8) & 0.9007 $\pm$ 0.0091 & 0.8634 $\pm$ 0.0616 & 0.5809 $\pm$ 0.0203 & 0.6935 $\pm$ 0.0221 & 0.0227 $\pm$ 0.0113 & 0.8100 $\pm$ 0.0195 \\
+\bottomrule
+\end{tabular}
+\end{table*}

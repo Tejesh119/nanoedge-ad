@@ -1,0 +1,2 @@
+seed,total_test_windows,baseline_reads,actual_reads,pct_reads_saved,streaming_f1,streaming_precision,streaming_recall,streaming_fpr,false_alerts_per_hour,wake_up_count,mean_detection_delay_sec,mean_detection_delay_windows,modelled_energy_mj,baseline_energy_mj,pct_energy_saved
+42,1374,175872,119488,32.05967976710335,0.5445544554455446,0.7692307692307693,0.421455938697318,0.029649595687331536,270.1965065502184,241,0.04945454545454545,0.15454545454545454,1495.686,2172.294,31.147165162726587

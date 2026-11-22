@@ -1,7 +1,7 @@
 # NanoEdge-AD Makefile
 PYTHON = .venv/Scripts/python.exe
 
-.PHONY: setup data train quantize prune simulate benchmark evaluate ablation report test all clean
+.PHONY: setup data train quantize prune simulate benchmark evaluate ablation report test all multiseed diagnostics aggregate clean
 
 setup:
 	$(PYTHON) -m pip install -r requirements.txt
@@ -35,6 +35,15 @@ report:
 
 test:
 	$(PYTHON) -m pytest tests/ -v
+
+multiseed:
+	$(PYTHON) -m src.multiseed
+
+diagnostics:
+	$(PYTHON) -m src.diagnostics
+
+aggregate:
+	$(PYTHON) -m src.aggregate
 
 all: data train quantize prune simulate benchmark evaluate ablation report test
 

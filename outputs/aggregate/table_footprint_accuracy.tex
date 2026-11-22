@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Combined Footprint vs Accuracy Edge Comparison across 5 Evaluation Seeds}
+\label{tab:footprint_accuracy}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model Architecture} & \textbf{Parameters} & \textbf{MACs / Window} & \textbf{Model Size} & \textbf{F1 Score} & \textbf{FPR} \\
+\midrule
+B1\_DecisionTree & 0 weights (55 nodes, depth 6) & 2,304 ops / window (feature extraction) & 0.86 KB (tree structure) & 0.8637 $\pm$ 0.0077 & 0.0188 $\pm$ 0.0188 \\
+B2\_VanillaCNN (FP32) & 6,418 & 135,216 & 25.07 KB & 0.7990 $\pm$ 0.0264 & 0.0206 $\pm$ 0.0206 \\
+B2\_VanillaCNN (INT8) & 6,418 & 135,216 & 12.80 KB & 0.7864 $\pm$ 0.0225 & 0.0348 $\pm$ 0.0348 \\
+B3\_DenseAutoencoder & 34,880 & 34,816 & 136.25 KB & 0.8337 $\pm$ 0.0124 & 0.0265 $\pm$ 0.0265 \\
+B4\_StaticPrunedCNN & 6,418 (30% sparse) & 94,651 & 25.07 KB & 0.7390 $\pm$ 0.0732 & 0.0269 $\pm$ 0.0269 \\
+B4\_StaticPrunedCNN (INT8) & 6,418 (30% sparse) & 94,651 & 12.80 KB & 0.7303 $\pm$ 0.0614 & 0.0339 $\pm$ 0.0339 \\
+TCN\_SensorGate (FP32) & 6,486 & 373,040 & 25.34 KB & 0.7029 $\pm$ 0.0202 & 0.0166 $\pm$ 0.0166 \\
+NanoEdge-AD TCN (INT8) & 6,486 & 373,040 & 31.30 KB & 0.6935 $\pm$ 0.0221 & 0.0227 $\pm$ 0.0227 \\
+\bottomrule
+\end{tabular}
+\end{table*}

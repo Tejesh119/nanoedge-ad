@@ -121,10 +121,34 @@ python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-# 3. Execute complete end-to-end pipeline
+# 3. Execute complete end-to-end pipeline (Single Primary Seed)
 make all
 # Alternatively on Windows systems without make:
 python run.py all
+
+# 4. Reviewer-Requested Multi-Seed Evaluation & Diagnostics
+# Multi-seed evaluation across 5 seeds [42, 101, 777, 1234, 2024] (runtime: ~8-12 min)
+make multiseed
+# Or: python -m src.multiseed --seeds 42 101 777 1234 2024
+
+# Diagnostic experiments (pooling, masking prob, gate regularization, capacity/RF) (runtime: ~6-8 min)
+make diagnostics
+# Or: python -m src.diagnostics
+
+# Aggregate all seed metrics, regenerate LaTeX tables, Pareto & publication plots (runtime: ~10 sec)
+make aggregate
+# Or: python -m src.aggregate
 ```
+
+All aggregated tables (CSV & LaTeX), publication figures (PDF & PNG), and the detailed reviewer changelog are saved under `outputs/aggregate/`:
+- `outputs/aggregate/PAPER_UPDATE_SUMMARY.md`: Section-by-section comparison of paper metrics before & after 5-seed evaluation.
+- `outputs/aggregate/table2_main_comparison.csv` & `.tex`: Full multi-seed benchmark table (including B2/B4 INT8 models).
+- `outputs/aggregate/table3_per_type_recall.csv` & `.tex`: Per-anomaly recall comparing TCN INT8 against Decision Tree.
+- `outputs/aggregate/table4_ablation.csv` & `.tex`: 5-configuration TinyML component ablation study.
+- `outputs/aggregate/table_footprint_accuracy.csv` & `.tex`: Combined edge hardware footprint and accuracy trade-off.
+- `outputs/aggregate/diagnostics.csv` & `table_diagnostics.tex`: Empirical findings exploring why TCN trails shallow models.
+- `outputs/aggregate/fig2_gate_and_pruning.pdf` / `.png`: Mean learned gate activations and offline pruning trade-off with $\pm 1$ std band.
+- `outputs/aggregate/fig3_robustness.pdf` / `.png`: Robustness degradation curves under noise, dropout, and drift with $\pm 1$ std band.
+- `outputs/aggregate/pareto_f1_vs_footprint.pdf` / `.png`: Pareto trade-off between F1 score, memory footprint, and computational MACs.
 
 See [RUN_REQUIREMENTS.md](docs/RUN_REQUIREMENTS.md) for detailed platform-specific requirements and [KEY_METRICS.md](docs/KEY_METRICS.md) for comprehensive empirical tables.

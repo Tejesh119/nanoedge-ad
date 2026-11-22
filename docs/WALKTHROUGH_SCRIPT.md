@@ -3,6 +3,7 @@
 > **Purpose**: This document provides a complete, spoken-ready walkthrough script and technical continuation guide for the **NanoEdge-AD** project. It is structured to allow any teammate, reviewer, or incoming developer to understand the architecture, reproduce every result, interpret the outputs, and immediately continue development from the current codebase state.
 >
 > **Division of Roles**:
+>
 > - **Speaker 1 (Group Mate 1)**: Project Overview & Theoretical Framework
 > - **Speaker 2 (Group Mate 2)**: Setup, Execution Procedure & Empirical Output Analysis
 > - **Speaker 3 (Group Mate 3)**: Codebase Handover & Future Technical Enhancements
@@ -10,6 +11,7 @@
 ---
 
 ## Speaker 1: Project Overview & System Architecture
+
 **Role**: Project Lead / Research Architect  
 **Topics**: Problem statement, research claims, architecture design, and synthetic dataset.
 
@@ -20,10 +22,12 @@
 > *In traditional Industrial IoT, edge devices blindly stream raw multi-sensor telemetry to the cloud. This architecture faces three fatal bottlenecks: high radio transmission energy, network latency, and privacy vulnerabilities. However, running deep neural networks on microcontrollers like the ARM Cortex-M4 or ESP32 is constrained by strict hardware limitations: typically under 256 KB of SRAM, 1 MB of Flash, and milliwatt power budgets.*
 >
 > *NanoEdge-AD solves this with two foundational innovations:*
+>
 > 1. *A compact, causal, dilated Temporal Convolutional Network (TCN) with a learnable **SensorGate** layer, quantized down to full INT8 precision.*
 > 2. *An adaptive **Runtime Sensor Pruning Policy** that dynamically shuts off quiet, low-importance sensor reads and triggers instant microsecond wakeups the moment an anomaly begins.*
 >
 > *We formulated four explicit research claims to evaluate:*
+>
 > - **C1**: A tiny quantized TCN (~8-12k params, INT8) achieves high anomaly detection precision while outperforming shallow baselines in temporal pattern recognition.
 > - **C2**: Dynamic feature pruning cuts sensor reads by at least 25% with minimal F1 degradation (under 3 percentage points).
 > - **C3**: The quantized INT8 model strictly fits microcontroller-class budgets in terms of flash footprint, RAM, and inference latency.
@@ -34,6 +38,7 @@
 ### 1.2 Technical Deep-Dive & Architecture Breakdown
 
 #### A. Synthetic Multi-Sensor Telemetry (`src/data_gen.py`)
+
 - **Telemetry Profile**: 220,000 samples across 4 synchronized physical channels:
   1. `temperature` (slow thermodynamic trend + low-frequency sinusoid)
   2. `vibration_x` (high-frequency mechanical oscillation)
@@ -53,6 +58,7 @@
   - Standard scaling parameters ($\mu, \sigma$) are computed **strictly on the training partition** and applied downstream to eliminate temporal lookahead leakage.
 
 #### B. The NanoEdge-AD Model (`src/models.py`)
+
 - **Learnable SensorGate Layer**:
   $$\text{Gate}(x) = x \odot \sigma(4 \cdot g), \quad \mathcal{L}_{\text{reg}} = \lambda_{\text{gate}} \sum_{i=1}^C |g_i|$$
   Learns continuous channel attribution during training, allowing the network to rank physical sensors by task relevance.
@@ -65,6 +71,7 @@
 ---
 
 ## Speaker 2: Setup, Execution & Output Analysis
+
 **Role**: TinyML Systems & Benchmarking Engineer  
 **Topics**: Setup procedure, execution commands, empirical metrics, quantization, pruning, and acceptance criteria.
 
@@ -77,6 +84,7 @@
 > *First, we create a clean Python 3.10+ virtual environment and install the pinned dependencies. Then, running `python run.py all` launches the entire 10-stage pipeline: data generation, multi-seed training, INT8 quantization, offline pruning sweeps, streaming simulation, hardware benchmarking, evaluation, report compilation, and pytest verification.*
 >
 > *Now let us look at the empirical results:*
+>
 > 1. **Model Footprint & INT8 Quantization**:
 >    - *Our FP32 model has 6,486 parameters and an F1 score of 0.6307.*
 >    - *Post-training integer quantization shrinks the binary to just **31.30 KB**, easily passing our 60 KB microcontroller budget.*
@@ -95,6 +103,7 @@
 ### 2.2 Execution Guide & Command Reference
 
 #### Step-by-Step Environment Setup
+
 ```powershell
 # 1. Clone or navigate to the project directory
 cd c:\Users\user\OneDrive\Desktop\EDGE_MAIN_PROJECT
@@ -112,6 +121,7 @@ pip install -r requirements.txt
 ```
 
 #### Running the Pipeline
+
 ```powershell
 # Run the entire pipeline end-to-end
 python run.py all
@@ -132,6 +142,7 @@ python run.py test        # Run pytest test suite (100% pass)
 ### 2.3 Verified Empirical Results Table
 
 #### Main Benchmark Comparison (3 Evaluation Seeds: Mean ± Std)
+
 | Model Architecture | Accuracy | Precision | Recall | F1 Score | False Positive Rate | ROC-AUC |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **B1: Decision Tree** | 0.9491 ± 0.0029 | 0.9051 ± 0.0045 | 0.8204 ± 0.0175 | 0.8606 ± 0.0105 | **0.0204 ± 0.0010** | 0.8677 ± 0.0185 |
@@ -142,6 +153,7 @@ python run.py test        # Run pytest test suite (100% pass)
 | **NanoEdge-AD TCN (INT8)** | 0.8544 ± 0.0262 | 0.6225 ± 0.1652 | 0.5939 ± 0.0225 | **0.6078 ± 0.0473** | 0.0845 ± 0.0379 | 0.7963 ± 0.0244 |
 
 #### Hardware Deployment & Latency Metrics
+
 | Target Platform | Mode | Clock | Throughput | Inference Latency | 320 ms Stride Budget Margin |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Host PC (x86_64 CPU)** | Measured ($N=1000$) | Multi-core | 27,394 inf/s | **0.0174 ms** | 0.005% of budget |
@@ -149,6 +161,7 @@ python run.py test        # Run pytest test suite (100% pass)
 | **Espressif ESP32** | Analytical Model | 240 MHz | 1.0 MAC/cycle | **1.554 ms** | 0.49% of budget |
 
 #### Acceptance Criteria Audit
+
 - **TCN Parameters (< 15,000)**: `6,486` (**PASS**)
 - **INT8 Model Size (< 60 KB)**: `31.30 KB` (**PASS**)
 - **INT8 vs FP32 F1 Drop ($\le 0.030$)**: `0.0229` (**PASS**)
@@ -160,6 +173,7 @@ python run.py test        # Run pytest test suite (100% pass)
 ---
 
 ## Speaker 3: Continuation Guide & Future Enhancements
+
 **Role**: Embedded Deployment & Next-Stage Research Lead  
 **Topics**: Codebase organization, how to pick up the code, hardware deployment roadmap, and future research directions.
 
@@ -170,6 +184,7 @@ python run.py test        # Run pytest test suite (100% pass)
 > *If you are picking up this repository today, your entry point is `config.yaml`. Every hyperparameter, sensor configuration, energy assumption, and threshold lives in this central file. You do not need to modify any hardcoded script logic.*
 >
 > *To extend the project, we have identified three immediate high-impact directions:*
+>
 > 1. **Physical On-Device Microcontroller Deployment**:
 >    - *Currently, microcontroller latencies are cycle-accurate analytical models.*
 >    - *The next step is compiling `outputs/model_int8.tflite` into a C byte array using TensorFlow Lite for Microcontrollers (TFLM) or STM32Cube.AI on a physical STM32L476RG or ESP32 development board, and measuring true hardware current draw using a power profiler.*
@@ -230,15 +245,19 @@ EDGE_MAIN_PROJECT/
    Load `outputs/test_windows.npz` in Python using `np.load('outputs/test_windows.npz')`. It contains `X_test_sample` and `expected_int8_pred` ready to feed into any target hardware simulator or embedded serial loop.
 2. **Convert TFLite to C Array**:
    Run the following terminal command to convert the INT8 model for TensorFlow Lite for Microcontrollers (TFLM):
+
    ```bash
    xxd -i outputs/model_int8.tflite > outputs/model_int8_data.h
    ```
+
 3. **Explore Hyperparameter Tuning**:
    Modify `config.yaml` to experiment with `gate_l1_reg` (currently `0.005`) or `stride` (currently `32`) to evaluate latency/F1 sensitivity on edge devices.
 4. **Run Unit Tests Before Any Commit**:
+
    ```powershell
    pytest tests/ -v
    ```
+
    Ensure all tests pass before making any new git commits. All commit milestones follow Conventional Commits (e.g., `feat:`, `fix:`, `docs:`).
 
 ---

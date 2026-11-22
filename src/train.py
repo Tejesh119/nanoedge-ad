@@ -311,10 +311,10 @@ def train_baseline_static_pruned_cnn(cnn_model, ds: dict, prune_fraction: float 
     metrics["best_threshold"] = best_thresh
     return pruned_model, metrics
 
-def run_training_campaign(config_path: str = "config.yaml"):
-    """Execute complete training across 3 seeds for TCN and all baselines."""
+def run_training_campaign(config_path: str = "config.yaml", custom_seeds: list = None):
+    """Execute complete training across seeds for TCN and all baselines."""
     cfg = load_config(config_path)
-    seeds = cfg.get("seeds", [42, 101, 777])
+    seeds = custom_seeds if custom_seeds is not None else cfg.get("seeds", [42, 101, 777, 1234, 2024])
     primary_seed = cfg.get("primary_seed", 42)
 
     logger.info(f"Starting training campaign over seeds: {seeds}")
@@ -382,8 +382,9 @@ def run_training_campaign(config_path: str = "config.yaml"):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="config.yaml")
+    parser.add_argument("--seeds", nargs="+", type=int, default=None, help="Optional seeds list")
     args = parser.parse_args()
-    run_training_campaign(args.config)
+    run_training_campaign(args.config, custom_seeds=args.seeds)
 
 if __name__ == "__main__":
     main()
