@@ -21,15 +21,20 @@ def test_metrics_json_schema():
         "per_anomaly_recall",
         "component_ablation",
         "acceptance_criteria",
-        "research_claims_evaluation"
+        "research_claims_evaluation",
+        "aggregate",
+        "per_seed"
     ]
     for key in expected_keys:
         assert key in data, f"Key '{key}' missing from metrics.json schema"
 
     # Metadata checks
     assert data["metadata"]["project"] == "nanoedge-ad"
-    assert len(data["metadata"]["seeds"]) == 3
+    assert len(data["metadata"]["seeds"]) == 5
     assert data["metadata"]["synthetic_data"] is True
+    assert "aggregate" in data
+    assert "per_seed" in data
+    assert len(data["per_seed"]) == 5
 
     # Acceptance criteria checks
     assert len(data["acceptance_criteria"]) >= 7
@@ -66,4 +71,28 @@ def test_results_tables_exist():
     assert "B2_VanillaCNN (FP32)" in md_text
     assert "B3_DenseAutoencoder" in md_text
     assert "B4_StaticPrunedCNN" in md_text
+
+def test_table_numbers_match_aggregate():
+    """Verify metrics in metrics.json and results.csv match outputs/aggregate/ exactly."""
+    import pandas as pd
+    agg_df = pd.read_csv("outputs/aggregate/table2_main_comparison.csv").set_index("model")
+    results_df = pd.read_csv("outputs/results.csv").set_index("model")
+
+    with open("outputs/metrics.json", "r", encoding="utf-8") as f:
+        metrics = json.load(f)
+
+    # Check that results.csv matches table2_main_comparison exactly
+    for model in agg_df.index:
+        assert model in results_df.index, f"Model {model} missing in results.csv"
+        assert agg_df.loc[model, "f1"] == results_df.loc[model, "f1"], (
+            f"F1 mismatch for {model}: {agg_df.loc[model, 'f1']} vs {results_df.loc[model, 'f1']}"
+        )
+
+    # Check metrics.json main comparison table matches aggregate
+    for row in metrics["main_comparison_table"]:
+        m = row["model"]
+        if m in agg_df.index:
+            assert row["f1_mean"] == round(float(agg_df.loc[m, "f1_mean"]), 4)
+            assert row["f1_std"] == round(float(agg_df.loc[m, "f1_std"]), 4)
+
 

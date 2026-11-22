@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\caption{Component Ablation Study: Progressive Integration of TinyML Optimizations (5 Seeds, Mean $\pm$ Std)}
+\label{tab:ablation}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Configuration} & \textbf{F1 Score} & \textbf{Parameters} & \textbf{Flash Size (KB)} & \textbf{Analytic MACs} & \textbf{Reads Saved} & \textbf{Energy Proxy (mJ)} \\
+\midrule
+A: Vanilla TCN (FP32) & 0.8020 $\pm$ 0.0251 & 6,482 & 25.32 & 372,784 & 0.0% & 2203.21 ± 0.00 \\
+B: TCN + INT8 & 0.7909 $\pm$ 0.0217 & 6,482 & 30.95 & 372,784 & 0.0% & 2172.29 ± 0.00 \\
+C: TCN + Gate & Mask (FP32) & 0.7029 $\pm$ 0.0202 & 6,486 & 25.34 & 373,040 & 0.0% & 2203.21 ± 0.00 \\
+D: TCN + Gate & Mask (INT8) & 0.6935 $\pm$ 0.0221 & 6,486 & 31.30 & 373,040 & 0.0% & 2172.29 ± 0.00 \\
+E: Config D + PrunePolicy & 0.5159 $\pm$ 0.0583 & 6,486 & 31.30 & 373,040 & 34.5% ± 3.4% & 1444.77 ± 72.09 \\
+\bottomrule
+\end{tabular}
+\end{table*}

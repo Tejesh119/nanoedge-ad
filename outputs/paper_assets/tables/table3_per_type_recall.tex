@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Per-Anomaly-Type Recall Comparison (5 Evaluation Seeds, Mean $\pm$ Std)}
+\label{tab:per_type_recall}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Anomaly Type} & \textbf{TCN INT8 Recall} & \textbf{Decision Tree Recall} & \textbf{Advantage} & \textbf{Best Diag Recall} \\
+\midrule
+Spike & 0.6581 $\pm$ 0.0966 & 0.9712 $\pm$ 0.0197 & -0.3131 $\pm$ 0.1152 & 0.7058 $\pm$ 0.1430 \\
+Drift & 0.5089 $\pm$ 0.0619 & 0.6814 $\pm$ 0.0963 & -0.1725 $\pm$ 0.0602 & 0.5243 $\pm$ 0.0557 \\
+Stuck at & 0.3155 $\pm$ 0.1002 & 0.7274 $\pm$ 0.0722 & -0.4118 $\pm$ 0.1331 & 0.5019 $\pm$ 0.1366 \\
+Noise burst & 0.8512 $\pm$ 0.0713 & 0.9355 $\pm$ 0.0538 & -0.0843 $\pm$ 0.1151 & 0.8840 $\pm$ 0.0236 \\
+Dropout & 0.6111 $\pm$ 0.0522 & 0.8718 $\pm$ 0.0480 & -0.2607 $\pm$ 0.0606 & 0.9068 $\pm$ 0.0262 \\
+\bottomrule
+\end{tabular}
+\end{table}

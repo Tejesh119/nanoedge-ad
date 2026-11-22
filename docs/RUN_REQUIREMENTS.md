@@ -1,86 +1,50 @@
-# NanoEdge-AD: Reproduction Guide & System Requirements
+# NanoEdge-AD: Reproduction Requirements & System Specification
 
-This document provides exact system requirements, execution stages, and environment specifications to reproduce all empirical findings in NanoEdge-AD.
+## 1. Environment & Hardware Specifications
+- **Operating System**: `Windows 11 (AMD64)`
+- **Python Version**: `3.13.5`
+- **TensorFlow Version**: `2.21.0`
+- **Seeds Evaluated**: `[42, 101, 777, 1234, 2024]`
+- **Total Pipeline Execution Runtime**:
+  - Full single-seed pipeline (`python run.py all`): ~2 minutes
+  - Multi-seed evaluation (`python -m src.multiseed`): ~8-12 minutes
+  - Diagnostic experiments suite (`python -m src.diagnostics`): ~6-8 minutes
+  - Statistical aggregation & asset compilation (`python -m src.aggregate`): ~10 seconds
 
 ---
 
-## 1. System & Hardware Specifications
-- **Operating System**: Windows 11 (64bit)
-- **Host CPU**: Single-socket x86_64 Laptop Processor
-- **Host Memory**: >= 8 GB RAM recommended
-- **Python Version**: 3.13.5 (Tested with Python 3.10+)
-- **Primary Frameworks**: TensorFlow 2.21.0, NumPy, Pandas, Scikit-learn, Matplotlib
-
----
-
-## 2. Setup & Installation
-Create an isolated virtual environment and install the exact pinned dependencies:
-
+## 2. Reproduction Commands
 ```bash
-# 1. Create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+# 1. Environment Activation
+.venv\Scripts\activate  # On Linux/macOS: source .venv/bin/activate
 
-# 2. Upgrade pip and install pinned requirements
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
----
-
-## 3. End-to-End Execution
-To reproduce all experiments, models, tables, plots, and document artifacts from a clean checkout:
-
-```bash
-# Using Makefile
-make all
-
-# Cross-platform runner (Linux / macOS / Windows)
+# 2. Single-Seed Standard Pipeline
 python run.py all
+# Or: make all
+
+# 3. Reviewer Multi-Seed Evaluation (5 Seeds: 42 101 777 1234 2024)
+make multiseed
+# Or: python -m src.multiseed --seeds 42 101 777 1234 2024
+
+# 4. Reviewer Diagnostic Experiments Suite
+make diagnostics
+# Or: python -m src.diagnostics
+
+# 5. Statistical Aggregation & Report Recompilation
+make aggregate
+# Or: python -m src.aggregate
+
+# 6. Generate IEEE Paper Assets & LaTeX Tables
+make paper-assets
+# Or: python -m src.generate_paper_assets
+
+# 7. Execute Pytest Unit Tests
+python -m pytest tests/ -v
 ```
 
-### Individual Execution Targets
-Each stage is encapsulated as an independent CLI module:
-- `python -m src.data_gen`: Generates synthetic 4-channel telemetry stream and sample plots.
-- `python -m src.train`: Trains TCN and all baselines across 3 random seeds.
-- `python -m src.quantize`: Converts primary model to full-integer INT8 TFLite model.
-- `python -m src.prune_experiment`: Evaluates offline gate-ranked vs random pruning sweeps.
-- `python -m src.runtime_pruning`: Executes chronological streaming simulation of PrunePolicy.
-- `python -m src.benchmark`: Benchmarks host inference and computes MCU latency estimates.
-- `python -m src.evaluate`: Generates confusion matrices, per-anomaly recall, and robustness curves.
-- `python -m src.ablation`: Runs component ablation study across 5 system configurations.
-- `python -m src.report`: Compiles `KEY_METRICS.md`, `RUN_REQUIREMENTS.md`, and `paper_draft.md`.
-- `python -m pytest tests/ -v`: Runs comprehensive 8-item unit test suite.
-
 ---
 
-## 4. Expected Output Files & Artifacts
-Upon full pipeline execution, the following files are produced in `outputs/`:
-| File | Approximate Size | Description |
-|:---|:---|:---|
-| `model_fp32.keras` | ~206 KB | Trained FP32 TCN model with SensorGate |
-| `model_int8.tflite` | ~31.3 KB | Full INT8 post-training quantized TFLite binary |
-| `gates.json` | ~150 B | Learned per-channel SensorGate activation weights |
-| `test_windows.npz` | ~241 KB | 500 test windows with model predictions for hardware deployment |
-| `metrics.json` | ~15 KB | Consolidated machine-readable single source of truth |
-| `results.csv` / `results.md` | ~1 KB | Multi-seed comparison table across all models |
-| `pruning_sweep.csv` | ~500 B | Gate-ranked vs Monte Carlo random pruning data |
-| `runtime_simulation.csv` | ~400 B | Streaming simulation statistics and energy proxy |
-| `benchmark.json` | ~2 KB | Host measured latency and MCU analytic estimates |
-| `ablation.csv` | ~600 B | Component ablation study results |
-| `paper_draft.md` | ~25 KB | Complete academic research paper draft |
-| `sample_windows.png` | ~460 KB | Synthetic telemetry visualization across anomaly modes |
-| `pruning_sweep.png` | ~180 KB | SensorGate weights and F1 vs reads saved trade-off |
-| `runtime_simulation.png`| ~390 KB | Streaming timeline, instant wakeups, and read savings |
-| `benchmark_latency.png` | ~110 KB | Host latency histogram and MCU latency budget comparison |
-| `confusion_matrices.png`| ~55 KB | Confusion matrices for TCN and baselines |
-| `per_anomaly_recall.png`| ~60 KB | Detection recall broken down by anomaly mode |
-| `robustness_curves.png` | ~160 KB | F1 curves under noise, sensor dropout, and drift |
-| `ablation_waterfall.png`| ~135 KB | Stepwise impact of Gate, INT8, and Pruning |
-
----
-
-## 5. Pinned Dependencies (from `pip freeze`)
+## 3. Pinned Dependencies (from `pip freeze`)
 ```text
 absl-py==2.5.1
 astunparse==1.6.3
@@ -123,9 +87,3 @@ python-dateutil==4.0.0
 PyYAML==6.0.3
 requests==2.34.2
 ```
-
----
-
-## 6. Troubleshooting
-- **No GPU Found Warning**: Native Windows running TensorFlow >= 2.11 defaults to CPU. This is expected and compliant with the laptop CPU constraint.
-- **TFLite Interpreter Warning**: `tf.lite.Interpreter` deprecation warnings can be safely ignored as standard builtins are used.

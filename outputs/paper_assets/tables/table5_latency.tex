@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Inference Latency & Edge Real-Time Feasibility (1000 Runs)}
+\label{tab:latency}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Platform} & \textbf{Clock} & \textbf{Throughput} & \textbf{Latency} & \textbf{Budget Margin} \\
+\midrule
+Host Laptop CPU (x86\_64) & Laptop Core & 47,588 inf/s & 0.0210 ms & 0.007\% \\
+ARM Cortex-M4 (STM32L4) & 80 MHz & 0.8 MAC/cyc & 5.829 ms & 1.82\% \\
+Espressif ESP32 & 240 MHz & 1.0 MAC/cyc & 1.554 ms & 0.49\% \\
+\bottomrule
+\end{tabular}
+\end{table}

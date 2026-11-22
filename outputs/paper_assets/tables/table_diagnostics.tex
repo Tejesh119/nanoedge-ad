@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{Diagnostic Experiments: Evaluating Architectural and Training Hypotheses (5 Seeds, Mean $\pm$ Std)}
+\label{tab:diagnostics}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Diagnostic Variant} & \textbf{FP32 F1} & \textbf{INT8 F1} & \textbf{INT8 Recall} & \textbf{INT8 FPR} \\
+\midrule
+Masking Prob: 0.0 & 0.7734 $\pm$ 0.0219 & 0.7675 $\pm$ 0.0177 & 0.6954 $\pm$ 0.0387 & 0.0278 $\pm$ 0.0095 \\
+Capacity: Wider TCN (32-48 filters) & 0.7006 $\pm$ 0.0303 & 0.7027 $\pm$ 0.0353 & 0.5928 $\pm$ 0.0505 & 0.0222 $\pm$ 0.0116 \\
+Masking Prob: 0.10 & 0.7209 $\pm$ 0.0221 & 0.7016 $\pm$ 0.0218 & 0.6163 $\pm$ 0.0180 & 0.0341 $\pm$ 0.0163 \\
+Masking Prob: 0.25 (Current) & 0.7029 $\pm$ 0.0202 & 0.6935 $\pm$ 0.0221 & 0.5809 $\pm$ 0.0203 & 0.0227 $\pm$ 0.0113 \\
+Gate L1: 1e-3 (Current) & 0.7029 $\pm$ 0.0202 & 0.6935 $\pm$ 0.0221 & 0.5809 $\pm$ 0.0203 & 0.0227 $\pm$ 0.0113 \\
+Gate L1: 1e-4 & 0.6947 $\pm$ 0.0277 & 0.6874 $\pm$ 0.0381 & 0.5878 $\pm$ 0.0297 & 0.0303 $\pm$ 0.0291 \\
+Gate L1: 1e-2 & 0.6964 $\pm$ 0.0268 & 0.6846 $\pm$ 0.0348 & 0.5862 $\pm$ 0.0257 & 0.0308 $\pm$ 0.0224 \\
+Gate L1: 0.0 & 0.6990 $\pm$ 0.0295 & 0.6816 $\pm$ 0.0333 & 0.5973 $\pm$ 0.0366 & 0.0381 $\pm$ 0.0270 \\
+Gate Init: 0.0 (Unbiased) & 0.6890 $\pm$ 0.0331 & 0.6787 $\pm$ 0.0355 & 0.5970 $\pm$ 0.0290 & 0.0402 $\pm$ 0.0346 \\
+Pooling: Concat Avg+Max & 0.6694 $\pm$ 0.0211 & 0.6653 $\pm$ 0.0113 & 0.5481 $\pm$ 0.0392 & 0.0234 $\pm$ 0.0122 \\
+Pooling: Global Max & 0.6659 $\pm$ 0.0227 & 0.6563 $\pm$ 0.0165 & 0.5797 $\pm$ 0.0411 & 0.0445 $\pm$ 0.0177 \\
+Receptive Field: Full-Window (d=1,2,4,8,16) & 0.6860 $\pm$ 0.0238 & 0.6283 $\pm$ 0.0976 & 0.5985 $\pm$ 0.1101 & 0.0969 $\pm$ 0.1683 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -17,6 +17,7 @@ TARGETS = {
     "multiseed": [sys.executable, "-m", "src.multiseed"],
     "diagnostics": [sys.executable, "-m", "src.diagnostics"],
     "aggregate": [sys.executable, "-m", "src.aggregate"],
+    "paper-assets": [sys.executable, "-m", "src.generate_paper_assets"],
 }
 
 ALL_SEQUENCE = ["data", "train", "quantize", "prune", "simulate", "benchmark", "evaluate", "ablation", "report", "test"]
