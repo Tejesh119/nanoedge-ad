@@ -1,6 +1,12 @@
 # NanoEdge-AD: Key Empirical Metrics and Experimental Results
 
-> **Notice**: All sensor telemetry in this repository is **synthetic** benchmark data generated to simulate physical multi-sensor IoT equipment. All metrics reported below are empirically measured from actual execution logs and deterministic random seeds.
+> **NOTICE**: All sensor telemetry in this repository is **synthetic** benchmark data generated to simulate physical multi-sensor IoT equipment. All metrics reported below are empirically measured from actual execution logs and deterministic random seeds.
+>
+> 🚀 **REVIEWER MULTI-SEED REVISION AVAILABLE**:
+> For the comprehensive 5-seed evaluation (`seeds = [42, 101, 777, 1234, 2024]`), diagnostic ablations, INT8 B2/B4 baselines, and section-by-section paper revision ledger, see:
+> - **Reviewer Summary**: [`outputs/aggregate/PAPER_UPDATE_SUMMARY.md`](../outputs/aggregate/PAPER_UPDATE_SUMMARY.md)
+> - **Multi-Seed Benchmark Tables (CSV & LaTeX)**: [`outputs/aggregate/`](../outputs/aggregate/)
+> - **Pareto & Publication Plots**: [`outputs/aggregate/pareto_f1_vs_footprint.png`](../outputs/aggregate/pareto_f1_vs_footprint.png), [`outputs/aggregate/fig2_gate_and_pruning.png`](../outputs/aggregate/fig2_gate_and_pruning.png), [`outputs/aggregate/fig3_robustness.png`](../outputs/aggregate/fig3_robustness.png)
 
 ---
 
